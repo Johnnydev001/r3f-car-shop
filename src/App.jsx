@@ -25,6 +25,7 @@ function App() {
     windows: false,
     hood: false,
     doors: false,
+    wheels: false
   });
 
 
@@ -50,11 +51,12 @@ function App() {
             <OrbitControls
               makeDefault
               enabled
-              minDistance={8}
-              maxDistance={13}
+              minDistance={5}
+              maxDistance={6}
               enablePan={false}
               rotateSpeed={0.7}
               maxPolarAngle={1.2} 
+              minPolarAngle={1}
             />
             <ambientLight intensity={0.6} />
 

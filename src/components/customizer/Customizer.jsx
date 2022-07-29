@@ -15,17 +15,19 @@ export default function Customizer(props) {
       <h1 className={styles.main_heading}>Car customizer</h1>
 
       <h2 className={styles.sub_heading}>
-        Customize the vehicle according to your taste 
+        Customize the vehicle according to your taste
       </h2>
-     
-      <input
-        className={styles.color_picker}
-        type="color"
-        name=""
-        id=""
-        onChange={handleColorChange}
-        value="#0062FF"
-      />
+
+      <div className={styles.color_picker_container}>
+        <h3 className={styles.title}>Pick a color:</h3>
+        <input
+          className={styles.color_picker}
+          type="color"
+          name=""
+          id=""
+          onChange={handleColorChange}
+        />
+      </div>
     </section>
   );
 }
