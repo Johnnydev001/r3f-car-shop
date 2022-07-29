@@ -1,0 +1,37 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+
+  border-bottom: 1px solid #d3d3d3;
+  width: 100%;
+
+  padding: 0.5em 1em 0.5em 1em;
+
+  .logo {
+    font-size: xx-large;
+  }
+
+
+  .page_links {
+
+    display: flex;
+
+    .links {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+      font-weight: bold;
+
+      .home {
+        width: 20px;
+        height: 20px;
+      }
+      .english {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}

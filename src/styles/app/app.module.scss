@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.container {
+  display: grid;
+
+  .customizer_container {
+    height: 115vh;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+
+    justify-items: center;
+    align-items: center;
+
+    div > div {
+      overflow-y: visible;
+      overflow-x: hidden;
+
+      
+    }
+  }
+}

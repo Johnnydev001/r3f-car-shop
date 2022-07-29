@@ -1,0 +1,48 @@
+.container {
+  background-image: url("/assets/imgs/landing.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 800px;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  .slogan {
+    display: grid;
+    grid-template-rows: 1fr 0.5em;
+    justify-items: center;
+    text-align: center;
+
+    .main_title {
+      font-size: 4em;
+    }
+    .sub_title_container {
+      display: flex;
+      align-items: center;
+      font-size: xx-large;
+      font-style: italic;
+
+      .sub_title {
+        justify-self: center;
+      }
+      .sub_title::after {
+        content: attr(data-end);
+        background-color: #ff4e00;
+        background-image: -webkit-linear-gradient(
+          315deg,
+          #ff4e00 0%,
+          #ec9f05 74%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}
