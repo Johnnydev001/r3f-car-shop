@@ -2,21 +2,11 @@ import calendar from "/assets/icons/calendar.png";
 import road from "/assets/icons/road.png";
 import oil from "/assets/icons/oil.png";
 import styles from "../../styles/topcars/top-cars.module.scss";
-import { useEffect, useState } from "react";
+import db from '../../../db.json'
 
 export default function TopCarsComponent() {
-  const [cars, setCars] = useState([]);
 
-  useEffect(() => {
-    const fetchCars = async () => {
-      const rawData = await fetch("http://localhost:3000/cars");
-      setCars(await rawData.json());
-    };
-
-    fetchCars().catch((err) => {
-      console.log(err);
-    });
-  });
+  
 
   return (
     <section className={styles.container} >
@@ -27,8 +17,8 @@ export default function TopCarsComponent() {
 
       <section className={styles.cars_container}>
         <ul className={styles.cars_list}>
-          {cars.length > 0 &&
-            cars.map((car) => (
+          {db.cars.length > 0 &&
+            db.cars.map((car) => (
               <li key={car.id}>
                 <div>
                   <img className={styles.car_picture} alt="Car" src={car.img} />
