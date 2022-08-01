@@ -12,21 +12,28 @@ export default function Customizer(props) {
 
   return (
     <section className={styles.container}>
-      <h1 className={styles.main_heading}>Car customizer</h1>
+      <div className={styles.headings_container}>
+        <h1 className={styles.main_heading}>Car customizer</h1>
 
-      <h2 className={styles.sub_heading}>
-        Customize the vehicle according to your taste
-      </h2>
+        <h2 className={styles.sub_heading}>
+          Customize the vehicle according to your taste
+        </h2>
+      </div>
 
-      <div className={styles.color_picker_container}>
-        <h3 className={styles.title}>Pick a color:</h3>
-        <input
-          className={styles.color_picker}
-          type="color"
-          name=""
-          id=""
-          onChange={handleColorChange}
-        />
+      <div
+        className={styles.color_picker_container}
+        style={props.hovered ? { display: "flex" } : { display: "none" }}
+      >
+        <form className={styles.customization_form} action="submit">
+          <h3 className={styles.title}>Pick a color:</h3>
+          <input
+            className={styles.color_picker}
+            type="color"
+            name=""
+            id=""
+            onChange={handleColorChange}
+          />
+        </form>
       </div>
     </section>
   );

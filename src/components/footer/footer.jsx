@@ -4,9 +4,8 @@ import facebook from "/assets/icons/facebook.png";
 import whatsapp from "/assets/icons/whatsapp.png";
 import instagram from "/assets/icons/instagram.png";
 
-export default function FooterComponent(props) {
+export default function FooterComponent() {
 
-  
   return (
     <section className={styles.container}>
       <section className={styles.sub_container}>

@@ -1,0 +1,39 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "name": "Chevrolet",
+      "model": "Camaro",
+      "date": 1970,
+      "vin": "SAJWJ0FF3F8321657",
+      "price": "40814.46 €",
+      "fuel": "gasoline",
+      "km": "323 000 KM",
+      "img": "https://images.unsplash.com/photo-1587750059638-e7e8c43b99fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+    },
+    {
+      "id": 2,
+      "name": "Volkswagen",
+      "model": "Beetle",
+      "date": 1980,
+      "vin": "SAJWJ0FF3F8321657",
+      "price": "25000 €",
+      "fuel": "gasoline",
+      "km": "120 000 KM",
+      "img": "https://images.unsplash.com/photo-1605521044601-232b0d737ca9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+    },
+    {
+      "id": 3,
+      "name": "MG",
+      "model": "MGB",
+      "date": 1960,
+      "vin": "SAJWJ0FF3F8321657",
+      "price": "340000 €",
+      "fuel": "gasoline",
+      "km": "600 000 KM",
+      "img": "https://images.unsplash.com/photo-1489008777659-ad1fc8e07097?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    }
+  ]
+}
+  
+

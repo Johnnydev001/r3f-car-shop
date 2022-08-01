@@ -15,19 +15,11 @@ import HeroComponent from "./components/hero/hero";
 import TopCarsComponent from "./components/topcars/top-cars";
 import FooterComponent from "./components/footer/footer";
 
-
 function App() {
-  const [carColor, setCarColor] = useState("");
-  const [pickedCarParts, setPickedCarParts] = useState({
-    front: false,
-    ceiling: false,
-    bumpers: false,
-    windows: false,
-    hood: false,
-    doors: false,
-    wheels: false
-  });
 
+  // Hooks for dealing with the model customization
+  const [carColor, setCarColor] = useState("");
+  const [hovered, setHovered] = useState(false);
 
   return (
     <section className={styles.container}>
@@ -36,7 +28,7 @@ function App() {
       <TopCarsComponent />
       <section className={styles.customizer_container}>
         <Customizer
-          pickedCarParts={pickedCarParts}
+          hovered={hovered}
           setCarColor={(color) => setCarColor(color)}
         />
         <Canvas dpr={[1, 2]}>
@@ -46,25 +38,30 @@ function App() {
               ground={{ height: 2, radius: 14, scale: 35 }}
             />
 
-            <PerspectiveCamera makeDefault position={[0, -3, 0]} />
-            <directionalLight intensity={0.8} color={'orange'} position={[3, 0, 5]}/>
+            <PerspectiveCamera makeDefault position={[0, -3, 8]} />
+            <directionalLight
+              intensity={0.8}
+              color={"orange"}
+              position={[3, 0, 5]}
+            />
+
+            {/* Camera controls*/}
             <OrbitControls
               makeDefault
               enabled
-              minDistance={5}
-              maxDistance={6}
+              minDistance={4.5}
+              maxDistance={7}
               enablePan={false}
               rotateSpeed={0.7}
-              maxPolarAngle={1.2} 
-              minPolarAngle={1}
+              maxPolarAngle={1.2}
+              minPolarAngle={0.5}
             />
             <ambientLight intensity={0.6} />
 
             <Car
               carColor={carColor}
-              setPickedCarParts={(pickedCarParts) =>
-                setPickedCarParts(pickedCarParts)
-              }
+              setHovered={(hovered) => setHovered(hovered)}
+              
             />
             <ContactShadows position={[0, -0.5, 0]} />
           </Suspense>

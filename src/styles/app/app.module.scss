@@ -20,11 +20,10 @@ body {
     justify-items: center;
     align-items: center;
 
-    div > div {
-      overflow-y: visible;
-      overflow-x: hidden;
-
-      
+    div {
+      padding: 0 1em 2em 1em;
+      overflow: hidden;
     }
+
   }
 }
