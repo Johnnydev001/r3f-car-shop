@@ -1,8 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import styles from "../../styles/car/car.module.scss";
+import { state } from "../../App";
+import { useSnapshot } from "valtio";
 
-export default function Car(props) {
+export default function Car() {
+
+  // Hook for handling state changes
+  const snap = useSnapshot(state);
+
   // Reference to the whole car model
   const groupRef = useRef();
 
@@ -14,7 +20,6 @@ export default function Car(props) {
 
   // Hooks for describing the name of the hovered mesh
   const [hoveredCarPart, setHoveredCarPart] = useState();
-  const [hovered, setHovered] = useState(false);
 
   // Hook for storing each individual mesh color
   const [colors, setColors] = useState({
@@ -27,11 +32,9 @@ export default function Car(props) {
     wheels: "#ffffff",
   });
 
-  props.setHovered(hovered);
-
   // Used to detect when is a mesh hovered and if so, change the cursor
   useEffect(() => {
-    const cursor = `<svg width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path fill="rgba(255, 255, 255, 0.5)" d="M29.5 54C43.031 54 54 43.031 54 29.5S43.031 5 29.5 5 5 15.969 5 29.5 15.969 54 29.5 54z" stroke="#000"/><g filter="url(#filter0_d)"><path d="M29.5 47C39.165 47 47 39.165 47 29.5S39.165 12 29.5 12 12 19.835 12 29.5 19.835 47 29.5 47z" fill="${props.carColor}"/></g><path d="M2 2l11 2.947L4.947 13 2 2z" fill="#000"/><text  fill="white" style="font-weight: bold;" font-family="'Montserrat', sans-serif" font-size="15" letter-spacing="-.01em"><tspan x="2" y="63">${hoveredCarPart}</tspan></text></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h64v64H0z"/></clipPath><filter id="filter0_d" x="6" y="8" width="47" height="47" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="2"/><feGaussianBlur stdDeviation="3"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/></filter></defs></svg>`;
+    const cursor = `<svg width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path fill="rgba(255, 255, 255, 0.5)" d="M29.5 54C43.031 54 54 43.031 54 29.5S43.031 5 29.5 5 5 15.969 5 29.5 15.969 54 29.5 54z" stroke="#000"/><g filter="url(#filter0_d)"><path d="M29.5 47C39.165 47 47 39.165 47 29.5S39.165 12 29.5 12 12 19.835 12 29.5 19.835 47 29.5 47z" fill="${snap.color}"/></g><path d="M2 2l11 2.947L4.947 13 2 2z" fill="#000"/><text  fill="white" style="font-weight: bold;" font-family="'Montserrat', sans-serif" font-size="15" letter-spacing="-.01em"><tspan x="2" y="63">${hoveredCarPart}</tspan></text></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h64v64H0z"/></clipPath><filter id="filter0_d" x="6" y="8" width="47" height="47" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="2"/><feGaussianBlur stdDeviation="3"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/></filter></defs></svg>`;
     if (hoveredCarPart) {
       document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(
         cursor
@@ -41,7 +44,7 @@ export default function Car(props) {
     }
   }, [hoveredCarPart]);
 
-  // Get the window dimensions that are used for resizing purposes
+  // Get the window dimensions that are used for resizing the model
   const getSizes = () => {
     const body = document.body;
     body.width = window.innerWidth;
@@ -56,69 +59,69 @@ export default function Car(props) {
   const meshOnClick = (e) => {
     switch (e.object.material.name) {
       case "ceiling": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            ceiling: props.carColor,
+            ceiling: snap.color,
           }));
         }
         break;
       }
 
       case "front": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            front: props.carColor,
+            front: snap.color,
           }));
         }
         break;
       }
 
       case "bumpers": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            bumpers: props.carColor,
+            bumpers: snap.color,
           }));
         }
         break;
       }
 
       case "windows": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            windows: props.carColor,
+            windows: snap.color,
           }));
         }
         break;
       }
 
       case "hood": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            hood: props.carColor,
+            hood: snap.color,
           }));
         }
         break;
       }
 
       case "doors": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            doors: props.carColor,
+            doors: snap.color,
           }));
         }
         break;
       }
       case "wheels": {
-        if (props.carColor) {
+        if (snap.color) {
           setColors((colors) => ({
             ...colors,
-            wheels: props.carColor,
+            wheels: snap.color,
           }));
         }
         break;
@@ -135,7 +138,7 @@ export default function Car(props) {
       onPointerOver={(e) => (
         e.stopPropagation(),
         setHoveredCarPart(e.object.material.name),
-        setHovered(true)
+        (state.hovered = true)
       )}
       onPointerOut={(e) => (e.stopPropagation(), setHoveredCarPart(null))}
       onClick={(e) => meshOnClick(e)}
@@ -182,10 +185,14 @@ export default function Car(props) {
         <mesh
           geometry={nodes.defaultMaterial_5.geometry}
           material={materials["1002"]}
+          material-color={colors.wheels}
+          material-name="wheels"
         />
         <mesh
           geometry={nodes.defaultMaterial_6.geometry}
           material={materials["1002"]}
+          material-color={colors.wheels}
+          material-name="wheels"
         />
         {/* Windows */}
         <mesh

@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { state } from "../../App";
 import styles from "../../styles/customizer/customizer.module.scss";
+import { useSnapshot } from "valtio";
 
-export default function Customizer(props) {
-  const [carColor, setCarColor] = useState("");
+export default function Customizer() {
 
-  props.setCarColor(carColor);
+  // Hook for handling state changes
+  const snap = useSnapshot(state);
 
+  // Update the state color when it changes
   const handleColorChange = (color) => {
-    setCarColor(color.target.value);
+    state.color = color.target.value;
   };
 
   return (
@@ -22,15 +24,15 @@ export default function Customizer(props) {
 
       <div
         className={styles.color_picker_container}
-        style={props.hovered ? { display: "flex" } : { display: "none" }}
+        style={snap.hovered ? { display: "flex" } : { display: "none" }}
       >
         <form className={styles.customization_form} action="submit">
           <h3 className={styles.title}>Pick a color:</h3>
           <input
             className={styles.color_picker}
             type="color"
-            name=""
-            id=""
+            name="color"
+            id="color"
             onChange={handleColorChange}
           />
         </form>

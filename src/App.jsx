@@ -14,23 +14,22 @@ import NavbarComponent from "./components/navbar/navbar";
 import HeroComponent from "./components/hero/hero";
 import TopCarsComponent from "./components/topcars/top-cars";
 import FooterComponent from "./components/footer/footer";
+import { proxy } from "valtio";
+
+// Constant to store the state of the application
+export const state = proxy({
+  color: "",
+  hovered: false,
+});
 
 function App() {
-
-  // Hooks for dealing with the model customization
-  const [carColor, setCarColor] = useState("");
-  const [hovered, setHovered] = useState(false);
-
   return (
     <section className={styles.container}>
       <NavbarComponent />
       <HeroComponent />
       <TopCarsComponent />
       <section className={styles.customizer_container}>
-        <Customizer
-          hovered={hovered}
-          setCarColor={(color) => setCarColor(color)}
-        />
+        <Customizer />
         <Canvas dpr={[1, 2]}>
           <Suspense fallback={"Loading world..."}>
             <Environment
@@ -38,14 +37,15 @@ function App() {
               ground={{ height: 2, radius: 14, scale: 35 }}
             />
 
-            <PerspectiveCamera makeDefault position={[0, -3, 8]} />
+            {/* Default camera */}
+            <PerspectiveCamera makeDefault position={[0, -3, 8]} /> 
             <directionalLight
               intensity={0.8}
               color={"orange"}
               position={[3, 0, 5]}
             />
 
-            {/* Camera controls*/}
+            {/* Default Camera controls*/}
             <OrbitControls
               makeDefault
               enabled
@@ -58,11 +58,7 @@ function App() {
             />
             <ambientLight intensity={0.6} />
 
-            <Car
-              carColor={carColor}
-              setHovered={(hovered) => setHovered(hovered)}
-              
-            />
+            <Car />
             <ContactShadows position={[0, -0.5, 0]} />
           </Suspense>
         </Canvas>
