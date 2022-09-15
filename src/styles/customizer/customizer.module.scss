@@ -14,26 +14,28 @@
   }
   .color_picker_container {
     background: #ffffff;
-    border: 1px solid transparent;
-    border-radius: 0.5em;
     position: absolute;
-    bottom: -60%;
+    bottom: -70%;
     left: -10%;
     z-index: 2;
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    padding: 0 0.5em 0.5em 0.5em;
-    filter: drop-shadow(1px 2px 3px #000000);
+    max-height: 200px;
+
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+
+    filter: drop-shadow(1px 1px 1px #000000);
 
     .customization_form {
       display: grid;
       justify-items: center;
-      row-gap: 0.5em;
+      row-gap: 1em;
+      
 
       .title {
         font-size: 1em;
         font-weight: bold;
+        
       }
       .color_picker {
         width: 40px;

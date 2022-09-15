@@ -26,7 +26,7 @@ export default function Customizer() {
         className={styles.color_picker_container}
         style={snap.hovered ? { display: "flex" } : { display: "none" }}
       >
-        <form className={styles.customization_form} action="submit">
+        <div className={styles.customization_form}>
           <h3 className={styles.title}>Pick a color:</h3>
           <input
             className={styles.color_picker}
@@ -35,7 +35,14 @@ export default function Customizer() {
             id="color"
             onChange={handleColorChange}
           />
-        </form>
+          <button
+            className={styles.save_btn}
+            type="button"
+            onClick={() => state.modelExport = true}
+          >
+            Export model
+          </button>
+        </div>
       </div>
     </section>
   );

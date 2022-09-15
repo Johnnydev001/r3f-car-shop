@@ -20,6 +20,7 @@ import { proxy } from "valtio";
 export const state = proxy({
   color: "",
   hovered: false,
+  modelExport: false
 });
 
 function App() {
