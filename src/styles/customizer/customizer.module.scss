@@ -13,33 +13,38 @@
     }
   }
   .color_picker_container {
-    background: #ffffff;
+    background: #ffffff67;
     position: absolute;
-    bottom: -70%;
-    left: -10%;
-    z-index: 2;
-    max-height: 200px;
+    bottom: -85%;
+    left: -40%;
+    z-index: 1;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 0.35em;
+    max-height: 30vh;
 
     display: grid;
     justify-items: center;
     justify-content: center;
 
-    filter: drop-shadow(1px 1px 1px #000000);
+    filter: drop-shadow(10px 10px 10px #000000);
 
     .customization_form {
       display: grid;
       justify-items: center;
-      row-gap: 1em;
-      
 
       .title {
-        font-size: 1em;
+        font-size: 1.25em;
         font-weight: bold;
-        
+      }
+
+      .sub_title {
+        font-size: 1em;
       }
       .color_picker {
         width: 40px;
         height: 40px;
+        margin-bottom: 2em;
       }
 
       .save_btn {
@@ -48,6 +53,7 @@
         border: 1px solid transparent;
         border-radius: 0.5em;
         background-color: #474747;
+        font-size: large;
       }
     }
   }

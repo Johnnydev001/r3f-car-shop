@@ -4,7 +4,7 @@
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  min-height: 800px;
+  height: 80vh;
 
   color: white;
 
@@ -15,7 +15,6 @@
 
   .slogan {
     display: grid;
-    grid-template-rows: 1fr 0.5em;
     justify-items: center;
     text-align: center;
 

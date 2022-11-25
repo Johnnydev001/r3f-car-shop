@@ -4,12 +4,13 @@
   align-items: center;
   justify-items: center;
 
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 0.25px solid #d3d3d3;
   width: 100%;
 
   padding: 0.5em 1em 0.5em 1em;
 
   .logo {
+    cursor: pointer;
     font-size: xx-large;
   }
 
@@ -19,16 +20,24 @@
     .links {
       list-style: none;
       display: flex;
-      gap: 2em;
+      gap: 1em;
       font-weight: bold;
+      align-items: center;
 
-      .home {
-        width: 20px;
-        height: 20px;
-      }
-      .english {
-        width: 25px;
-        height: 25px;
+      .link {
+        cursor: pointer;
+        .home {
+          width: 20px;
+          height: 20px;
+        }
+        .promotion_btn {
+          border: 1px solid transparent;
+          border-radius: 0.35em;
+          background-color: #ff4e00;
+          color: #ffffff;
+          cursor: pointer;
+          font-size: large;
+        }
       }
     }
   }

@@ -3,7 +3,6 @@ import styles from "../../styles/customizer/customizer.module.scss";
 import { useSnapshot } from "valtio";
 
 export default function Customizer() {
-
   // Hook for handling state changes
   const snap = useSnapshot(state);
 
@@ -27,7 +26,8 @@ export default function Customizer() {
         style={snap.hovered ? { display: "flex" } : { display: "none" }}
       >
         <div className={styles.customization_form}>
-          <h3 className={styles.title}>Pick a color:</h3>
+          <h3 className={styles.title}>Pick your desired color</h3>
+          <h4 className={styles.sub_title}>Change how the car looks</h4>
           <input
             className={styles.color_picker}
             type="color"
@@ -38,7 +38,7 @@ export default function Customizer() {
           <button
             className={styles.save_btn}
             type="button"
-            onClick={() => state.modelExport = true}
+            onClick={() => (state.modelExport = true)}
           >
             Export model
           </button>
