@@ -2,18 +2,23 @@
   text-align: center;
 
   .headings_container {
-
     .main_title {
       font-size: 3em;
       font-weight: bold;
     }
-  
+
     .sub_title {
       font-size: 2em;
       font-weight: lighter;
     }
   }
 
+  .canvas_container {
+    height: 40vh;
+    border-radius: 0.25em;
+    border: 1px solid transparent;
+    margin: 0.5em;
+  }
 
   .cars_container {
     margin-top: 3em;
@@ -23,6 +28,14 @@
       align-items: center;
       justify-items: center;
       list-style: none;
+
+      .render_btn {
+        padding: 0 1em 0 1em;
+        color: white;
+        border: 1px solid transparent;
+        border-radius: 0.5em;
+        background-color: orange;
+      }
 
       .car_picture {
         border-radius: 0.5em;
