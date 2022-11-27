@@ -12,7 +12,12 @@ import { useGLTF } from "@react-three/drei";
 export function Lancia(props) {
   const { nodes, materials } = useGLTF("assets/models/lancia/lancia.glb");
   return (
-    <group {...props} dispose={null}>
+    <group
+      scale={0.85}
+      dispose={null}
+      position={[0, -0.5, 0]}
+      rotation={[0, 0.5, 0]}
+    >
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.01}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group
@@ -1105,16 +1110,7 @@ export function Lancia(props) {
               material={materials.material}
             />
           </group>
-          <group
-            position={[0, -1.47, 0]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={398.83}
-          >
-            <mesh
-              geometry={nodes.ground001_SOL_shadow_0.geometry}
-              material={materials["SOL._shadow"]}
-            />
-          </group>
+
           <group rotation={[0, Math.PI / 2, 0]} scale={100}>
             <mesh
               geometry={nodes.lights_EXT004_glass_flou_0.geometry}

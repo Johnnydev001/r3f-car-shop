@@ -4,15 +4,31 @@ import oil from "/assets/icons/oil.png";
 import styles from "../../styles/topcars/top-cars.module.scss";
 
 import lancia from "../../../public/assets/imgs/lancia.jpg";
-import { useState } from "react";
+import nissan from "../../../public/assets/imgs/nissan.jpg";
+import honda from "../../../public/assets/imgs/honda.png";
+import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Lancia } from "../models/Lancia";
-import { Environment, PresentationControls } from "@react-three/drei";
+import {
+  Environment,
+  PresentationControls,
+  ContactShadows,
+  Plane,
+  MeshReflectorMaterial,
+} from "@react-three/drei";
+import { Honda } from "../models/Honda";
+import { Nissan } from "../models/Nissan";
 
 const renderModelByName = (name) => {
   switch (name) {
     case "lancia":
       return <Lancia />;
+
+    case "nissan":
+      return <Nissan />;
+
+    case "honda":
+      return <Honda />;
 
     default:
       return <Lancia />;
@@ -26,12 +42,56 @@ export default function TopCarsComponent() {
   const render3dModel = (model) => {
     return (
       <section className={styles.canvas_container}>
-        <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
-          <Environment preset={"city"} />
-          <PresentationControls makeDefault>
-            {renderModelByName(model)}
-          </PresentationControls>
-        </Canvas>
+        <Suspense
+          fallback={
+            <div
+              style={{
+                padding: "2em",
+                border: "1px solid black",
+                borderRadius: "0.5em",
+                background: "white",
+                color: "black",
+              }}
+            >
+              <h1>Loading model...</h1>
+            </div>
+          }
+        >
+          <Canvas camera={{ position: [0, 0, 3], fov: 55 }}>
+            <ambientLight intensity={0.5} />
+            <Environment preset={"city"} />
+            <PresentationControls
+              makeDefault
+              polar={[0, Math.PI / 3]}
+              config={{ mass: 2, tension: 500 }}
+            >
+              {renderModelByName(model)}
+            </PresentationControls>
+            <Plane
+              args={[6, 6, 6]}
+              position={[0, -0.1, 0]}
+              rotation={[Math.PI / 2, 0, 0]}
+            >
+              <MeshReflectorMaterial
+                blur={[400, 100]}
+                resolution={1024}
+                mixBlur={1}
+                opacity={2}
+                depthScale={1.1}
+                minDepthThreshold={0.4}
+                maxDepthThreshold={1.25}
+                roughness={1}
+              />
+            </Plane>
+            <ContactShadows
+              position={[0, -0.5, 0]}
+              opacity={0.75}
+              scale={10}
+              blur={2.5}
+              far={4}
+            />
+          </Canvas>
+        </Suspense>
       </section>
     );
   };
@@ -64,7 +124,7 @@ export default function TopCarsComponent() {
                 3D
               </button>
             )}
-            {renderModelButtonClick && render3dModel(lancia)}
+            {renderModelButtonClick && render3dModel("lancia")}
             <section className={styles.car_container}>
               <div>
                 <h3 className={styles.car_brand}>Lancia</h3>
@@ -94,7 +154,7 @@ export default function TopCarsComponent() {
                 </div>
 
                 <div className={styles.price_container}>
-                  <h3 className={styles.items}>Price: 40814.46 €</h3>
+                  <h3 className={styles.items}>Price: 70814.46 €</h3>
                 </div>
               </div>
             </section>
@@ -107,7 +167,7 @@ export default function TopCarsComponent() {
           >
             {!renderModelButtonClick && (
               <div className={styles.image_container}>
-                <img className={styles.car_picture} alt="Car" src={lancia} />
+                <img className={styles.car_picture} alt="Car" src={nissan} />
               </div>
             )}
 
@@ -119,11 +179,11 @@ export default function TopCarsComponent() {
                 3D
               </button>
             )}
-            {renderModelButtonClick && render3dModel(lancia)}
+            {renderModelButtonClick && render3dModel("nissan")}
             <section className={styles.car_container}>
               <div>
-                <h3 className={styles.car_brand}>Lancia</h3>
-                <h4 className={styles.car_model}>Fulvia</h4>
+                <h3 className={styles.car_brand}>Nissan</h3>
+                <h4 className={styles.car_model}>Skyline</h4>
               </div>
 
               <div className={styles.items_container}>
@@ -134,12 +194,12 @@ export default function TopCarsComponent() {
                       alt="calendar"
                       src={calendar}
                     />
-                    <label>1970</label>
+                    <label>1991</label>
                   </div>
 
                   <div className={styles.items}>
                     <img className={styles.icon} alt="km" src={road} />
-                    <label>323 000 KM</label>
+                    <label>350 000 KM</label>
                   </div>
 
                   <div className={styles.items}>
@@ -149,7 +209,7 @@ export default function TopCarsComponent() {
                 </div>
 
                 <div className={styles.price_container}>
-                  <h3 className={styles.items}>Price: 40814.46 €</h3>
+                  <h3 className={styles.items}>Price: 80000 €</h3>
                 </div>
               </div>
             </section>
@@ -162,7 +222,7 @@ export default function TopCarsComponent() {
           >
             {!renderModelButtonClick && (
               <div className={styles.image_container}>
-                <img className={styles.car_picture} alt="Car" src={lancia} />
+                <img className={styles.car_picture} alt="Car" src={honda} />
               </div>
             )}
 
@@ -174,11 +234,11 @@ export default function TopCarsComponent() {
                 3D
               </button>
             )}
-            {renderModelButtonClick && render3dModel(lancia)}
+            {renderModelButtonClick && render3dModel("honda")}
             <section className={styles.car_container}>
               <div>
-                <h3 className={styles.car_brand}>Lancia</h3>
-                <h4 className={styles.car_model}>Fulvia</h4>
+                <h3 className={styles.car_brand}>Honda</h3>
+                <h4 className={styles.car_model}>NSX</h4>
               </div>
 
               <div className={styles.items_container}>
@@ -189,12 +249,12 @@ export default function TopCarsComponent() {
                       alt="calendar"
                       src={calendar}
                     />
-                    <label>1970</label>
+                    <label>1990</label>
                   </div>
 
                   <div className={styles.items}>
                     <img className={styles.icon} alt="km" src={road} />
-                    <label>323 000 KM</label>
+                    <label>400 000 KM</label>
                   </div>
 
                   <div className={styles.items}>
@@ -204,7 +264,7 @@ export default function TopCarsComponent() {
                 </div>
 
                 <div className={styles.price_container}>
-                  <h3 className={styles.items}>Price: 40814.46 €</h3>
+                  <h3 className={styles.items}>Price: 60814.46 €</h3>
                 </div>
               </div>
             </section>

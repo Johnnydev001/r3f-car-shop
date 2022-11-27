@@ -15,9 +15,13 @@
 
   .canvas_container {
     height: 40vh;
-    border-radius: 0.25em;
-    border: 1px solid transparent;
     margin: 0.5em;
+
+    canvas {
+      background: #2d4967;
+      border-radius: 0.5em;
+      border: 1px solid transparent;
+    }
   }
 
   .cars_container {
@@ -31,17 +35,19 @@
 
       .render_btn {
         padding: 0 1em 0 1em;
+        font-size: large;
         color: white;
         border: 1px solid transparent;
         border-radius: 0.5em;
         background-color: orange;
       }
 
-      .car_picture {
-        border-radius: 0.5em;
-        object-fit: cover;
-        width: 80%;
-        max-width: 100%;
+      .image_container {
+        .car_picture {
+          border-radius: 0.5em;
+          height: 40vh;
+          aspect-ratio: 16/9;
+        }
       }
 
       .car_container {
