@@ -13,7 +13,7 @@ export function Lancia(props) {
   const { nodes, materials } = useGLTF("assets/models/lancia/lancia.glb");
   return (
     <group
-      scale={0.85}
+      scale={props.scale}
       dispose={null}
       position={[0, -0.5, 0]}
       rotation={[0, 0.5, 0]}
@@ -1100,41 +1100,11 @@ export function Lancia(props) {
               material={materials["00_decals"]}
             />
           </group>
-          <group
-            position={[0, -1.93, 0]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={398.83}
-          >
-            <mesh
-              geometry={nodes.ground_SOL_0.geometry}
-              material={materials.material}
-            />
-          </group>
 
           <group rotation={[0, Math.PI / 2, 0]} scale={100}>
             <mesh
               geometry={nodes.lights_EXT004_glass_flou_0.geometry}
               material={materials.glass_flou}
-            />
-          </group>
-          <group
-            position={[0.33, 0.73, -105.06]}
-            rotation={[-Math.PI / 2, 0, -Math.PI]}
-            scale={63.14}
-          >
-            <mesh
-              geometry={nodes.Plane_logo_FB_0.geometry}
-              material={materials.logo_FB}
-            />
-          </group>
-          <group
-            position={[0.33, 0.73, 103.78]}
-            rotation={[-Math.PI / 2, 0, 0]}
-            scale={206.59}
-          >
-            <mesh
-              geometry={nodes.Plane003_logo_lancia_0.geometry}
-              material={materials.logo_lancia}
             />
           </group>
         </group>

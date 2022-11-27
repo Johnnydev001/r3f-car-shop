@@ -15,12 +15,15 @@ export function Honda(props) {
     "assets/models/honda/honda.glb"
   );
   const { actions } = useAnimations(animations, group);
+
   return (
     <group
       ref={group}
       rotation={[0, -Math.PI / 3, 0]}
       dispose={null}
       position={[1, -1, 0]}
+      onPointerEnter={() => Object.entries(actions)[30][1].play()}
+      onPointerLeave={() => Object.entries(actions)[30][1].stop()}
     >
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>

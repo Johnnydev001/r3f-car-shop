@@ -6,7 +6,7 @@ source: https://sketchfab.com/3d-models/nissan-skyline-aeed89c97d8e4c95b11587506
 title: Nissan Skyline
 */
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
 export function Nissan(props) {
@@ -15,14 +15,19 @@ export function Nissan(props) {
     "assets/models/nissan/nissan.glb"
   );
   const { actions } = useAnimations(animations, group);
+
+  const [playAnimations, setPlayAnimations] = useState(false);
+
   return (
     <group
       ref={group}
-      {...props}
       dispose={null}
       scale={0.009}
       rotation={[0.1, -1, 0]}
       position={[0, -0.4, 0]}
+      onClick={() => setPlayAnimations(!playAnimations)}
+      onPointerEnter={() => Object.entries(actions)[4][1].play()}
+      onPointerLeave={() => Object.entries(actions)[4][1].stop()}
     >
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>

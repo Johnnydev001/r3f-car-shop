@@ -13,8 +13,8 @@ import {
   Environment,
   PresentationControls,
   ContactShadows,
-  Plane,
   MeshReflectorMaterial,
+  Stage,
 } from "@react-three/drei";
 import { Honda } from "../models/Honda";
 import { Nissan } from "../models/Nissan";
@@ -57,34 +57,37 @@ export default function TopCarsComponent() {
             </div>
           }
         >
-          <Canvas camera={{ position: [0, 0, 3], fov: 55 }}>
+          <Canvas camera={{ position: [0, 0, 3], fov: 55, zoom: 1.7 }}>
+            <color attach="background" args={["#2d4967"]} />
+            <fog attach="fog" args={["#2d4967", 10, 20]} />
             <ambientLight intensity={0.5} />
-            <Environment preset={"city"} />
             <PresentationControls
               makeDefault
-              polar={[0, Math.PI / 3]}
-              config={{ mass: 2, tension: 500 }}
+              polar={[0, 0]}
+              config={{ mass: 2, tension: 600 }}
+              global
+              speed={1.5}
             >
-              {renderModelByName(model)}
+              <Stage environment={"city"} contactShadow={false} intensity={0.4}>
+                {renderModelByName(model)}
+              </Stage>
             </PresentationControls>
-            <Plane
-              args={[6, 6, 6]}
-              position={[0, -0.1, 0]}
-              rotation={[Math.PI / 2, 0, 0]}
-            >
+
+            <mesh rotation={[-Math.PI / 2, 0, 0]}>
+              <planeGeometry args={[50, 50]} />
               <MeshReflectorMaterial
-                blur={[400, 100]}
-                resolution={1024}
-                mixBlur={1}
-                opacity={2}
-                depthScale={1.1}
-                minDepthThreshold={0.4}
-                maxDepthThreshold={1.25}
+                blur={[300, 100]}
+                resolution={2048}
+                mixBlur={2}
+                mixStrength={40}
                 roughness={1}
+                color="#101010"
+                metalness={2}
               />
-            </Plane>
+            </mesh>
+
             <ContactShadows
-              position={[0, -0.5, 0]}
+              position={[0, 0, 0]}
               opacity={0.75}
               scale={10}
               blur={2.5}
