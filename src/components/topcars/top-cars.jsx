@@ -5,19 +5,32 @@ import styles from "../../styles/topcars/top-cars.module.scss";
 
 import lancia from "../../../public/assets/imgs/lancia.jpg";
 import nissan from "../../../public/assets/imgs/nissan.jpg";
-import honda from "../../../public/assets/imgs/honda.png";
+import honda from "../../../public/assets/imgs/honda.jpg";
 import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Lancia } from "../models/Lancia";
 import {
-  Environment,
   PresentationControls,
   ContactShadows,
   MeshReflectorMaterial,
   Stage,
+  useProgress,
+  Html,
 } from "@react-three/drei";
 import { Honda } from "../models/Honda";
 import { Nissan } from "../models/Nissan";
+
+const Loader = () => {
+  const { progress } = useProgress();
+  return (
+    <Html className={styles.loader_container} center>
+      <section>
+        <h1 className={styles.main_heading}>Loading model...</h1>
+        <h2 className={styles.sub_heading}>{progress} % loaded.</h2>
+      </section>
+    </Html>
+  );
+};
 
 const renderModelByName = (name) => {
   switch (name) {
@@ -36,28 +49,18 @@ const renderModelByName = (name) => {
 };
 
 export default function TopCarsComponent() {
-  const [modelButtonShown, setModelButtonShown] = useState(false);
-  const [renderModelButtonClick, setRenderModelButtonClick] = useState(false);
+  const [renderModelButtonClick, setRenderModelButtonClick] = useState({
+    lancia: false,
+    nissan: false,
+    honda: false,
+  });
 
   const render3dModel = (model) => {
     return (
       <section className={styles.canvas_container}>
-        <Suspense
-          fallback={
-            <div
-              style={{
-                padding: "2em",
-                border: "1px solid black",
-                borderRadius: "0.5em",
-                background: "white",
-                color: "black",
-              }}
-            >
-              <h1>Loading model...</h1>
-            </div>
-          }
-        >
-          <Canvas camera={{ position: [0, 0, 3], fov: 55, zoom: 1.7 }}>
+        <Canvas camera={{ position: [0, 0, 3], fov: 55, zoom: 1.7 }}>
+          <Suspense fallback={<Loader />}>
+            {/* Background stuff */}
             <color attach="background" args={["#2d4967"]} />
             <fog attach="fog" args={["#2d4967", 10, 20]} />
             <ambientLight intensity={0.5} />
@@ -67,12 +70,15 @@ export default function TopCarsComponent() {
               config={{ mass: 2, tension: 600 }}
               global
               speed={1.5}
+              cursor
+              zoom={0.5}
             >
               <Stage environment={"city"} contactShadow={false} intensity={0.4}>
                 {renderModelByName(model)}
               </Stage>
             </PresentationControls>
 
+            {/* Car reflections on the ground */}
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
               <planeGeometry args={[50, 50]} />
               <MeshReflectorMaterial
@@ -93,8 +99,8 @@ export default function TopCarsComponent() {
               blur={2.5}
               far={4}
             />
-          </Canvas>
-        </Suspense>
+          </Suspense>
+        </Canvas>
       </section>
     );
   };
@@ -108,26 +114,22 @@ export default function TopCarsComponent() {
 
       <section className={styles.cars_container}>
         <ul className={styles.cars_list}>
-          <li
-            key={1}
-            onPointerEnter={() => setModelButtonShown(true)}
-            onPointerLeave={() => setModelButtonShown(false)}
-          >
-            {!renderModelButtonClick && (
+          <li key={1}>
+            {!renderModelButtonClick.lancia && (
               <div className={styles.image_container}>
                 <img className={styles.car_picture} alt="Car" src={lancia} />
               </div>
             )}
 
-            {modelButtonShown && !renderModelButtonClick && (
-              <button
-                className={styles.render_btn}
-                onClick={() => setRenderModelButtonClick(true)}
-              >
-                3D
-              </button>
-            )}
-            {renderModelButtonClick && render3dModel("lancia")}
+            {renderModelButtonClick.lancia && render3dModel("lancia")}
+            <button
+              className={styles.render_btn}
+              onClick={(prevState) =>
+                setRenderModelButtonClick({ ...prevState, lancia: true })
+              }
+            >
+              3D
+            </button>
             <section className={styles.car_container}>
               <div>
                 <h3 className={styles.car_brand}>Lancia</h3>
@@ -163,26 +165,22 @@ export default function TopCarsComponent() {
             </section>
           </li>
 
-          <li
-            key={2}
-            onPointerEnter={() => setModelButtonShown(true)}
-            onPointerLeave={() => setModelButtonShown(false)}
-          >
-            {!renderModelButtonClick && (
+          <li key={2}>
+            {!renderModelButtonClick.nissan && (
               <div className={styles.image_container}>
                 <img className={styles.car_picture} alt="Car" src={nissan} />
               </div>
             )}
 
-            {modelButtonShown && !renderModelButtonClick && (
-              <button
-                className={styles.render_btn}
-                onClick={() => setRenderModelButtonClick(true)}
-              >
-                3D
-              </button>
-            )}
-            {renderModelButtonClick && render3dModel("nissan")}
+            {renderModelButtonClick.nissan && render3dModel("nissan")}
+            <button
+              className={styles.render_btn}
+              onClick={(prevState) =>
+                setRenderModelButtonClick({ ...prevState, nissan: true })
+              }
+            >
+              3D
+            </button>
             <section className={styles.car_container}>
               <div>
                 <h3 className={styles.car_brand}>Nissan</h3>
@@ -218,26 +216,22 @@ export default function TopCarsComponent() {
             </section>
           </li>
 
-          <li
-            key={3}
-            onPointerEnter={() => setModelButtonShown(true)}
-            onPointerLeave={() => setModelButtonShown(false)}
-          >
-            {!renderModelButtonClick && (
+          <li key={3}>
+            {!renderModelButtonClick.honda && (
               <div className={styles.image_container}>
                 <img className={styles.car_picture} alt="Car" src={honda} />
               </div>
             )}
 
-            {modelButtonShown && !renderModelButtonClick && (
-              <button
-                className={styles.render_btn}
-                onClick={() => setRenderModelButtonClick(true)}
-              >
-                3D
-              </button>
-            )}
-            {renderModelButtonClick && render3dModel("honda")}
+            {renderModelButtonClick.honda && render3dModel("honda")}
+            <button
+              className={styles.render_btn}
+              onClick={(prevState) =>
+                setRenderModelButtonClick({ ...prevState, honda: true })
+              }
+            >
+              3D
+            </button>
             <section className={styles.car_container}>
               <div>
                 <h3 className={styles.car_brand}>Honda</h3>

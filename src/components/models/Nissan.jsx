@@ -9,7 +9,7 @@ title: Nissan Skyline
 import React, { useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-export function Nissan(props) {
+export function Nissan() {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "assets/models/nissan/nissan.glb"

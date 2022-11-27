@@ -6,18 +6,13 @@ source: https://sketchfab.com/3d-models/lancia-fulvia-rallye-5f02ef9e0daf481aba8
 title: Lancia Fulvia rallye
 */
 
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function Lancia(props) {
+export function Lancia() {
   const { nodes, materials } = useGLTF("assets/models/lancia/lancia.glb");
   return (
-    <group
-      scale={props.scale}
-      dispose={null}
-      position={[0, -0.5, 0]}
-      rotation={[0, 0.5, 0]}
-    >
+    <group dispose={null} position={[0, -0.5, 0]} rotation={[0, 0.5, 0]}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.01}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group

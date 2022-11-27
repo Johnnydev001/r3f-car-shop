@@ -14,12 +14,30 @@
   }
 
   .canvas_container {
-    height: 40vh;
+    height: 50vh;
     margin: 0.5em;
 
     canvas {
       border-radius: 0.5em;
       border: 1px solid transparent;
+    }
+
+    .loader_container {
+      padding: 1em;
+      min-width: 10vw;
+      text-align: center;
+
+      color: #247724;
+      border: 0.25px solid gray;
+      border-radius: 0.35em;
+      box-shadow: 1px 3px black;
+
+      .main_heading {
+        font-size: 1.25em;
+      }
+      .sub_heading {
+        font-size: 0.75em;
+      }
     }
   }
 
@@ -33,7 +51,6 @@
       list-style: none;
 
       .render_btn {
-        padding: 0 1em 0 1em;
         font-size: large;
         color: white;
         border: 1px solid transparent;
@@ -44,8 +61,8 @@
       .image_container {
         .car_picture {
           border-radius: 0.5em;
-          height: 40vh;
-          width: 80%;
+          height: 50vh;
+          width: 85%;
           aspect-ratio: 16/9;
         }
       }

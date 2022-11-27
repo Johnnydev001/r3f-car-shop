@@ -9,7 +9,7 @@ title: Honda NSX 1990
 import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-export function Honda(props) {
+export function Honda() {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "assets/models/honda/honda.glb"
