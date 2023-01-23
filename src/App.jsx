@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import styles from "./styles/app/app.module.scss";
 import { Canvas } from "@react-three/fiber";
 import Car from "./components/car/Car";
@@ -20,7 +20,7 @@ import { proxy } from "valtio";
 export const state = proxy({
   color: "",
   hovered: false,
-  modelExport: false
+  modelExport: false,
 });
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
             />
 
             {/* Default camera */}
-            <PerspectiveCamera makeDefault position={[0, -3, 8]} /> 
+            <PerspectiveCamera makeDefault position={[0, -3, 8]} />
             <directionalLight
               intensity={0.8}
               color={"orange"}
