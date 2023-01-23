@@ -1,4 +1,4 @@
-﻿# E-commer car shop with React Three Fiber / Three JS
+﻿# E-commerce car shop with React Three Fiber / Three JS
 
 An online car stand website that combines simple HTML/CSS with Three JS in order to provide a much more interesting experience for the user (not responsive though, as it is a simple POC to demonstrate the power of Three JS in e-commerce)
 
